@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bate-papo</title>
+</head>
+<body>
+  <h1>Bate-papo</h1>
+  <% if (erro) { %>
+    <p style="color: red;"><%= erro %></p>
+  <% } %>
+  <form action="/postarMensagem" method="post">
+    <label for="usuario">Usuário:</label>
+    <select id="usuario" name="usuario" required>
+      <% usuarios.forEach(usuario => { %>
+        <option value="<%= usuario.apelido %>"><%= usuario.nome %> (Apelido: <%= usuario.apelido %>)</option>
+      <% }); %>
+    </select>
+    <br>
+    <label for="mensagem">Mensagem:</label>
+    <input type="text" id="mensagem" name="mensagem" required>
+    <br>
+    <button type="submit">Enviar</button>
+  </form>
+  <h2>Mensagens</h2>
+  <ul>
+    <% mensagens.forEach(mensagem => { %>
+      <li><strong><%= mensagem.usuario %>:</strong> <%= mensagem.mensagem %> - <%= mensagem.dataHora %></li>
+    <% }); %>
+  </ul>
+  <a href="/">Voltar para o Menu</a>
+</body>
+</html>

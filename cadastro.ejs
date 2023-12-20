@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Usuários</title>
+</head>
+<body>
+  <h1>Cadastro de Usuários</h1>
+  <% if (erro) { %>
+    <p style="color: red;"><%= erro %></p>
+  <% } %>
+  <form action="/cadastrarUsuario" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
+    <br>
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input type="date" id="dataNascimento" name="dataNascimento" required>
+    <br>
+    <label for="apelido">Apelido:</label>
+    <input type="text" id="apelido" name="apelido" required>
+    <br>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <h2>Usuários Cadastrados</h2>
+  <ul>
+    <% usuariosCadastrados.forEach(usuario => { %>
+      <li><%= usuario.nome %> (Apelido: <%= usuario.apelido %>)</li>
+    <% }); %>
+  </ul>
+  <a href="/">Voltar para o Menu</a>
+</body>
+</html>
